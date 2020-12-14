@@ -11,15 +11,19 @@
     <script src="/dist/vue.js"></script>
     <script>
       const { reactive, effect, ref, computed } = VueReactivity
-      console.log({ reactive, effect, ref, computed })
-      const state = reactive({ name: 'zf', age: 11, address: '回龙观' })
+
+      // const state = reactive({ name: 'zf', age: 11, address: '回龙观', a: { a: 11 } })
+      const state = reactive([1,2,3])
+
       effect(() => {
-        console.log('ok')
-        app.innerHTML = state.name + '今年' + state.age + '岁了'
+        // app.innerHTML = state.name + '今年' + state.age + '岁了'
+        app.innerHTML = state
       })
+
       //   当effect函数中依赖的数据发生变化，effect会重新执行
       setTimeout(() => {
-        state.name = 'jw'
+        // state.b = 'jw'
+        state[10] = 100
       }, 1000)
     </script>
   </body>
