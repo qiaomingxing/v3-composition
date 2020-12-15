@@ -11,3 +11,9 @@ const hasOwnProperty = Object.prototype.hasOwnProperty
 export const hasOwn = (val, key) => hasOwnProperty.call(val, key)
 
 export const hasChanged = (value, oldValue) => value !== oldValue
+
+export const isString = value => typeof value === 'string'
+
+export const isFunction = value => typeof value === 'function'
+
+export * from './shapeFlags'

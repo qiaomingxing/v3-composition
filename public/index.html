@@ -10,21 +10,23 @@
     <!-- <script src="/node_modules/@vue/reactivity/dist/reactivity.global.js"></script> -->
     <script src="/dist/vue.js"></script>
     <script>
-      const { reactive, effect, ref, computed } = VueReactivity
+      let { createApp, reactive, h } = Vue
+      let App = {
+        setup() {
+          let state = reactive({ name: 'zf', age: 11 }) // proxy
 
-      // const state = reactive({ name: 'zf', age: 11, address: '回龙观', a: { a: 11 } })
-      const state = reactive([1,2,3])
-
-      effect(() => {
-        // app.innerHTML = state.name + '今年' + state.age + '岁了'
-        app.innerHTML = state
-      })
-
-      //   当effect函数中依赖的数据发生变化，effect会重新执行
-      setTimeout(() => {
-        // state.b = 'jw'
-        state[10] = 100
-      }, 1000)
+          setTimeout(() => {
+            state.name = 'jw'
+          }, 1000)
+          return () => {
+            // render
+            return h('div', { style: { color: 'red' } }, state.name + ':' + state.age)
+          }
+        }
+      }
+      // 组件是怎样渲染的，初始化的核心
+      // vue3 runtime-dom 针对浏览器平台 runtime-core核心了
+      createApp(App).mount('#app')
     </script>
   </body>
 </html>

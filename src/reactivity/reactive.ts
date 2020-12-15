@@ -15,7 +15,7 @@ function createReactiveObject(target, baseHandlers) {
   if (exisitingProxy) {
     return exisitingProxy
   }
-  // 只是对在最外层对象做地理，默认不会递归，而且不会重新重写对象中的属性，只能代理对象级
+  // 只是对在最外层对象做代理，默认不会递归，而且不会重新重写对象中的属性，只能代理对象级
   const proxy = new Proxy(target, baseHandlers)
   proxyMap.set(target, proxy) // 将代理对象和代理后的结果做个映射表
   return proxy
