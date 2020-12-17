@@ -8,7 +8,6 @@ export function createAppAPI(render) {
         render(vnode, container)
       }
     }
-
     return app
   }
 }

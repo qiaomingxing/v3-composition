@@ -7,25 +7,41 @@
   </head>
   <body>
     <div id="app"></div>
-    <!-- <script src="/node_modules/@vue/reactivity/dist/reactivity.global.js"></script> -->
     <script src="/dist/vue.js"></script>
     <script>
       let { createApp, reactive, h } = Vue
       let App = {
         setup() {
-          let state = reactive({ name: 'zf', age: 11 }) // proxy
+          let state = reactive({ flag: true })
 
           setTimeout(() => {
-            state.name = 'jw'
-          }, 1000)
+            state.flag = !state.flag
+          }, 2000)
+
           return () => {
-            // render
-            return h('div', { style: { color: 'red' } }, state.name + ':' + state.age)
+            return state.flag
+              ? h('div', { style: { color: 'red' }, id: 1 }, [
+                  h('li', { key: 'A', style: { background: 'white' } }, 'A'),
+                  h('li', { key: 'B', style: { background: 'white' } }, 'B'),
+                  h('li', { key: 'C', style: { background: 'white' } }, 'C'),
+                  h('li', { key: 'D', style: { background: 'white' } }, 'D'),
+                  h('li', { key: 'E', style: { background: 'white' } }, 'E'),
+                  h('li', { key: 'F', style: { background: 'white' } }, 'F'),
+                  h('li', { key: 'G', style: { background: 'white' } }, 'G')
+                ])
+              : h('div', { style: { color: 'blue' } }, [
+                  h('li', { key: 'A', style: { background: 'white' } }, 'A'),
+                  h('li', { key: 'B', style: { background: 'white' } }, 'B'),
+                  h('li', { key: 'D', style: { background: 'white' } }, 'D'),
+                  h('li', { key: 'E', style: { background: 'white' } }, 'E'),
+                  h('li', { key: 'C', style: { background: 'white' } }, 'C'),
+                  h('li', { key: 'H', style: { background: 'white' } }, 'H'),
+                  h('li', { key: 'F', style: { background: 'white' } }, 'F'),
+                  h('li', { key: 'G', style: { background: 'white' } }, 'G')
+                ])
           }
         }
       }
-      // 组件是怎样渲染的，初始化的核心
-      // vue3 runtime-dom 针对浏览器平台 runtime-core核心了
       createApp(App).mount('#app')
     </script>
   </body>

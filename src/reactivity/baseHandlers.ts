@@ -13,7 +13,6 @@ function createGetter() {
       return res
     }
     // 依赖收集
-    console.log(key)
     track(target, key)
 
     if (isObject(res)) {
